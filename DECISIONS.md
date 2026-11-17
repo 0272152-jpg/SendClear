@@ -1,4 +1,4 @@
-﻿# DECISIONS
+# DECISIONS
 
 Each decision: what we chose, what we rejected, why.
 
@@ -68,7 +68,7 @@ The presenter wanted their own demo account. Its name, phone, password and PIN c
 ## D18: QR follows the EAS channel, not a single update
 The QR and link point to channel `main` (runtime `exposdk:58.0.0`), so each new `eas update --branch main` reaches the same QR without changing Blackboard.
 
-## D19: No interviews → hypotheses, never invented data
+## D19: No interviews → hypotheses, never invented data (superseded by D24)
 We did not run user interviews, so the deck (slide 2 and appendix A4), the pitch and the Excel notes present the user side as hypotheses to validate, each with how we will test it and the number that would prove us wrong. Inventing interview counts or "X% of users said" would be fabricated evidence; a stated hypothesis with a kill threshold is honest and still shows how we would decide. Model values do not change (MXN 600 average transfer, 5 transfers per user per month): only their source now says "Hypothesis · not validated (no interviews yet) · test in pilot". The slide 2 figure (20%) is the same assumption as the "would pay to split costs" step of the market funnel (slide 4 / A3). If interviews or the pilot happen, use `entrega/ENCUESTA.md` / `entrega/INTERVIEWS.md` and replace the hypotheses with measured data.
 
 ## D20: No iOS large titles; Home greeting and Sign out live in the screen
@@ -82,3 +82,6 @@ New accounts started with MXN 1,000.00 of simulated money, which ran out after a
 
 ## D23: All four test accounts can sign in; simpler demo password
 The presenter needed to show both sides of a transfer, so Carla and Diego now get the same demo password and PIN from `.env` as Ana and Beto (before: random secrets, receive-only). If `.env` is missing or invalid they still get random secrets, so no account ever has a guessable default. The demo password in `.env` was changed to an easier one (still 8+ characters, still only in `.env` and the Blackboard submission, never in the repo). The seed test now signs in as Carla and checks she cannot see Beto -> Ana (CROSS-USER). Phones that already have data keep the old accounts until **Reset demo data**.
+
+## D24: No user-validation section in the deck
+No interviews were run, and the presenter chose not to show the user side as hypotheses either. Removed: the hypothesis card on slide 2 (now a sourced fact: 69.1% of adults with a savings account already move money in their bank app, INEGI ENIF 2024), appendix A4 (old A5-A8 are now A4-A7), the interview guide, the survey and the fictitious example answers. Nothing was invented. The two user inputs in the Excel (MXN 600 average transfer, 5 transfers per user per month) are marked as plain assumptions, TODO-verify in the pilot; values and outputs are unchanged. Known cost: the rubric's "Problem and validation" criterion asks for interview evidence.

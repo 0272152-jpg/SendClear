@@ -26,7 +26,7 @@
 | 2026-11-16 | Rafael Galicia Figeroa | Demo starting balance raised to MXN 10,000 (D22); tests use the constant. A "request money" button was proposed and not built: SPEC lists it as out of scope (frozen). 13 tests pass. Republished to EAS | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | Carla and Diego can sign in with the demo creds (D23); easier demo password set in `.env` only (not in the repo). New CROSS-USER check for Carla in the seed test; 13 tests pass. Republished to EAS. Phones with old data need Reset demo data | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | Deck: A6 now says the session is remembered (D21); slide 11 title no longer repeats its label and the "1 Expo app" card became "23 decisions recorded". PDF re-exported. Plain-Spanish glossary of every deck term for the presenter (`entrega/GLOSARIO.md`, local) | AI coding assistant, reviewed by me |
-| TODO | TODO | Optional: run interviews/pilot and replace hypotheses | |
+| 2026-11-16 | Rafael Galicia Figeroa | Removed the user-validation section (D24): slide 2 card now shows the INEGI 69.1% fact, appendix A4 deleted and A5-A8 renumbered, interview guide/survey/example answers deleted, Excel notes back to plain assumptions (outputs unchanged). Slide 11: 24 decisions. PDF re-exported | AI coding assistant, reviewed by me |
 | TODO | TODO | Tested on a real phone with Expo Go (iPhone + Android) | |
 | TODO | TODO | Partner review and merge through a pull request | |
 
