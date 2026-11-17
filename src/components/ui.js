@@ -27,7 +27,9 @@ export function Screen({ children, scroll = true, dark = false, topInset = false
           <ScrollView
             contentContainerStyle={styles.screen}
             keyboardShouldPersistTaps="handled"
-            contentInsetAdjustmentBehavior="automatic"
+            // With a header, iOS insets the scroll view for it (large titles). Without one, SafeAreaView
+            // already pads the notch and home bar; "automatic" would add the same space again on iPhone.
+            contentInsetAdjustmentBehavior={topInset ? 'never' : 'automatic'}
           >
             {children}
           </ScrollView>

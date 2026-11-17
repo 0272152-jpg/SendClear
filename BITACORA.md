@@ -18,6 +18,7 @@
 | 2026-11-16 | Rafael Galicia Figeroa | Restored the earlier git history (3 commits from a stray `.git copy` backup) into `main`, then deleted the backup. Checked deliverables against the FIN506 guidelines; built a local, git-ignored `ENTREGA_BLACKBOARD/` folder (deck PDF, Excel, QR, Blackboard text, rubric checklist). `ejemplo/` (invented sample answers) is git-ignored. 13 tests pass | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | Repo now holds only the app and its build record: `entrega/` (deck, Excel, pitch, interviews, legal detail) removed from git and git-ignored; those files go to Blackboard | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | Clearer sign-in (landing) screen: brand row, one-line promise, the three product points (phone number, fee first, receipt) and the form in a card. Same flow and fields, no new features. Android bundle builds; 13 tests pass. TODO-verify on a real phone | AI coding assistant, reviewed by me |
+| 2026-11-16 | Rafael Galicia Figeroa | iPhone fix: the sign-in screen got the notch/home-bar space twice (SafeAreaView + ScrollView `contentInsetAdjustmentBehavior="automatic"`). Screens without a header now use `never`. TODO-verify on iPhone | AI coding assistant, reviewed by me |
 | TODO | TODO | Optional: run interviews/pilot and replace hypotheses | |
 | TODO | TODO | Tested on a real phone with Expo Go (iPhone + Android) | |
 | TODO | TODO | Partner review and merge through a pull request | |
