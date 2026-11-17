@@ -51,3 +51,5 @@ __pycache__/
 # Local only: submission folder (has test credentials) and invented example answers
 ENTREGA_BLACKBOARD/
 ejemplo/
+# Deliverables go to Blackboard, not the repo
+entrega/

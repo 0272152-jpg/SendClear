@@ -6,7 +6,7 @@ SendClear is a peer-to-peer (P2P) transfer app built with Expo (React Native) fo
 
 ## Final-project deliverables
 
-Deck (PDF + PPTX), financial model (Excel), pitch script, interview guide and regulatory/legal detail are in [`entrega/`](entrega/README.md).
+The deck (PDF) and the financial model (Excel) are submitted on Blackboard, not kept in this repository. This repository holds the app and its build record (SPEC, DECISIONS, BITACORA).
 
 ## Run it
 

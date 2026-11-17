@@ -16,6 +16,7 @@
 | 2026-11-16 | Rafael Galicia Figeroa | Added an optional presenter account from `.env` (`ensureExtraAccount` in `seed.js`, covered in the seed test). Created EAS channel `main`; the QR now follows the channel. Republished. 13 tests pass | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | User evidence shown as hypotheses, not interviews; removed screen-recording backup from slide 3; PDF re-exported. Excel notes for average transfer and transfers per user now say "Hypothesis · not validated"; values and outputs unchanged (EBITDA Y5 24.9M, ask 43M). Decision D19 | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | Restored the earlier git history (3 commits from a stray `.git copy` backup) into `main`, then deleted the backup. Checked deliverables against the FIN506 guidelines; built a local, git-ignored `ENTREGA_BLACKBOARD/` folder (deck PDF, Excel, QR, Blackboard text, rubric checklist). `ejemplo/` (invented sample answers) is git-ignored. 13 tests pass | AI coding assistant, reviewed by me |
+| 2026-11-16 | Rafael Galicia Figeroa | Repo now holds only the app and its build record: `entrega/` (deck, Excel, pitch, interviews, legal detail) removed from git and git-ignored; those files go to Blackboard | AI coding assistant, reviewed by me |
 | TODO | TODO | Optional: run interviews/pilot and replace hypotheses | |
 | TODO | TODO | Tested on a real phone with Expo Go (iPhone + Android) | |
 | TODO | TODO | Partner review and merge through a pull request | |
