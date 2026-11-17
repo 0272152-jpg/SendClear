@@ -11,14 +11,14 @@ Young adults in Mexico who split costs with friends (rent, food, trips) and send
 4. **Review**: recipient, amount, fee (1%, max MXN 15.00) and total. Enter the 4-digit PIN and tap **Send**. A wrong PIN shakes the boxes and moves no money.
 5. **Receipt** with folio (`SC-XXXXXXXX`), date, parties, amount, fee, total and status *Completed*. **Done** or going back returns to Home, never to the PIN screen, so a transfer cannot be sent twice.
 6. **History**: every transfer sent or received. Tap one to open its receipt.
-7. **Sign out**.
+7. **Sign out** (button at the end of Home). Until then, reopening the app keeps you signed in on that phone.
 
 ## Rules
 - Amounts are stored in centavos (integers).
 - Fee = 1% of the amount, rounded, capped at MXN 15.00. The sender pays it. The recipient receives the full amount.
 - Limit: MXN 10,000.00 per transfer. The amount must be above zero.
 - Cannot send to yourself or to a phone without an account. Cannot send more than balance − fee.
-- Wrong PIN: no money moves. After 3 wrong PINs the user is signed out.
+- Wrong PIN: no money moves. After 3 wrong PINs the user is signed out. The count survives closing the app.
 - A user sees only transfers where they are the sender or the recipient. Other users appear only as name + masked phone.
 - The fee is shown only to the sender.
 

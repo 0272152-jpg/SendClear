@@ -34,6 +34,35 @@ export async function seedIfEmpty() {
 }
 
 export async function resetDemoData() {
+  await clearSession();
   await ledger.resetAll();
   await seedIfEmpty();
+}
+
+// Remembered sign-in (D21): only { userId, pinAttempts } is stored on the phone, never a password or PIN.
+// The wrong-PIN count is stored too, so closing the app does not reset the 3-try limit.
+const SESSION_KEY = 'sendclear.session.v1';
+
+export async function saveSession(session) {
+  if (!session) return;
+  await AsyncStorage.setItem(SESSION_KEY, JSON.stringify({ userId: session.userId, pinAttempts: session.pinAttempts || 0 }));
+}
+
+export async function clearSession() {
+  await AsyncStorage.removeItem(SESSION_KEY);
+}
+
+// Returns the saved session only if that user still exists on this phone; otherwise forgets it.
+export async function restoreSession() {
+  try {
+    const raw = await AsyncStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw);
+    const session = { userId: String(saved.userId || ''), pinAttempts: Number(saved.pinAttempts) || 0 };
+    await ledger.getMe(session); // throws if the account was deleted (e.g. Reset demo data)
+    return session;
+  } catch {
+    await clearSession().catch(() => {});
+    return null;
+  }
 }

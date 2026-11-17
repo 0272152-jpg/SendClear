@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { Button, Card, ErrorText, PinInput, Row, Screen, SimulatedBadge } from '../components/ui';
 import { useAuth } from '../auth';
 import { hapticError } from '../feedback';
-import { ledger } from '../services';
+import { ledger, saveSession } from '../services';
 import { calcFee } from '../core/ledger';
 import { colors, formatAmount, formatMXN, space, type } from '../theme';
 
@@ -27,6 +27,7 @@ export default function ConfirmScreen({ navigation, route }) {
     setLoading(true);
     try {
       const tx = await ledger.send(session, { toPhone, amount, note, pin });
+      saveSession(session).catch(() => {}); // wrong-PIN count back to 0, also after a restart
       // Replace the send flow with the receipt so "back" cannot resubmit the transfer.
       navigation.reset({ index: 1, routes: [{ name: 'Home' }, { name: 'Receipt', params: { txId: tx.id, justSent: true } }] });
     } catch (e) {
@@ -36,6 +37,7 @@ export default function ConfirmScreen({ navigation, route }) {
         signOut();
         return;
       }
+      saveSession(session).catch(() => {}); // keep the wrong-PIN count if the app is closed now
       setError(e.message);
       setShakeKey((k) => k + 1);
       setPin('');

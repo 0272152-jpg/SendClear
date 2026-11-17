@@ -72,7 +72,7 @@ Everything simulated is labelled on screen with a gold **SIMULATED** badge.
 
 ## Security minimum
 
-- **Sign-in** with phone and password. The session lives in memory only, so closing the app signs you out.
+- **Sign-in** with phone and password. The phone remembers who is signed in (only the user id and the wrong-PIN count, never the password or PIN), so reopening the app skips sign-in. **Sign out**, 3 wrong PINs or **Reset demo data** forget it (DECISIONS.md D21).
 - **Each user sees only their own data.** Every read in `ledger.js` takes the session and filters by `userId`. A transfer between two other people returns "not found". This is proven by the `CROSS-USER` tests.
 - Passwords and PINs are stored as **salted SHA-256 hashes**, never in plain text.
 - A **PIN is required** for every transfer. After 3 wrong PINs, the user is signed out.

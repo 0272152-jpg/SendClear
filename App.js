@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthContext } from './src/auth';
-import { seedIfEmpty } from './src/services';
+import { clearSession, restoreSession, saveSession, seedIfEmpty } from './src/services';
 import { colors } from './src/theme';
 import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
@@ -35,13 +35,22 @@ export default function App() {
 
   useEffect(() => {
     // A failed seed must not block the app; the sign-in screen explains missing demo accounts.
+    // Then reopen the last session, if this phone remembers one (D21).
     seedIfEmpty()
       .catch(() => {})
+      .then(restoreSession)
+      .then((s) => s && setSession(s))
       .finally(() => setReady(true));
   }, []);
 
-  const signIn = useCallback((s) => setSession(s), []);
-  const signOut = useCallback(() => setSession(null), []);
+  const signIn = useCallback((s) => {
+    setSession(s);
+    saveSession(s).catch(() => {});
+  }, []);
+  const signOut = useCallback(() => {
+    setSession(null);
+    clearSession().catch(() => {});
+  }, []);
   const auth = useMemo(() => ({ session, signIn, signOut }), [session, signIn, signOut]);
 
   if (!ready) {

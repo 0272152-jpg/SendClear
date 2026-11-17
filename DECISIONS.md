@@ -1,4 +1,4 @@
-# DECISIONS
+﻿# DECISIONS
 
 Each decision: what we chose, what we rejected, why.
 
@@ -73,3 +73,6 @@ We did not run user interviews, so the deck (slide 2 and appendix A4), the pitch
 
 ## D20: No iOS large titles; Home greeting and Sign out live in the screen
 On a recent iPhone, Home's large-title header rendered empty (our ScrollView sits inside SafeAreaView, not directly under the header) and the "Sign out" header button was clipped inside the system's fixed-size button pill. We use a regular header title, show "Hi, <name>" inside the screen and moved Sign out to a button at the end of Home. The empty space on Home now explains the three steps of a transfer (same rules as `ledger.js`) and, with no transfers yet, points to the invented test user Carla Prueba. No new features: same data, same actions. TODO-verify on Android.
+
+## D21: Remember the session on the phone
+The presenter asked not to sign in every time the app opens. We save `{ userId, pinAttempts }` in AsyncStorage (`sendclear.session.v1`), never the password or PIN, and on launch reopen it only if `ledger.getMe` still finds that user. **Sign out**, 3 wrong PINs and **Reset demo data** delete it. Trade-off: anyone holding an unlocked phone sees the balance and history; money still cannot move without the 4-digit PIN, and the wrong-PIN count is saved so closing the app does not reset the 3-try limit. This replaces the "session in memory only" rule in README. Reads still take the session and filter by `userId`; `ledger.js` is unchanged.
