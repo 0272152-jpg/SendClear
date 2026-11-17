@@ -20,15 +20,23 @@ export default function SendScreen({ navigation }) {
   const latestPhone = useRef('');
   const amountInput = useRef(null);
 
-  const amount = parseMXN(amountText);
+  const [lookupError, setLookupError] = useState('');
+
+  // iPhones whose region uses a decimal comma type "150,50": read it as 150.50, not 15,050.
+  const amount = parseMXN(/^\d+,\d{1,2}$/.test(amountText.trim()) ? amountText.trim().replace(',', '.') : amountText);
   const validAmount = Number.isInteger(amount) && amount > 0;
 
-  async function onPhoneChange(value) {
+  async function onPhoneChange(raw) {
+    // iOS autofill and paste can bring "+52 735 290 3409": keep digits only, last 10 for a +52 number.
+    let value = raw.replace(/\D/g, '');
+    if (value.length === 12 && value.startsWith('52')) value = value.slice(2);
+    value = value.slice(0, 10);
     setPhone(value);
     latestPhone.current = value;
     setRecipient(null);
+    setLookupError('');
     setError('');
-    if (value.replace(/\D/g, '').length === 10) {
+    if (value.length === 10) {
       try {
         const found = await ledger.findRecipient(session, value);
         if (latestPhone.current === value) {
@@ -36,10 +44,22 @@ export default function SendScreen({ navigation }) {
           amountInput.current?.focus(); // move on to the next step automatically
         }
       } catch (e) {
-        if (latestPhone.current === value) setError(e.message);
+        // Shown right under the field, so the keyboard cannot hide it.
+        if (latestPhone.current === value) setLookupError(e.message);
       }
     }
   }
+
+  // Why the button is still off, in plain words, right under it.
+  const missing = !recipient
+    ? phone.length < 10
+      ? 'Enter the 10-digit number of a SendClear user.'
+      : lookupError
+        ? 'Check the number above.'
+        : 'Looking up the number…'
+    : !validAmount
+      ? 'Enter an amount, e.g. 150 or 150.50.'
+      : '';
 
   async function onContinue() {
     setError('');
@@ -60,7 +80,12 @@ export default function SendScreen({ navigation }) {
   return (
     <Screen>
       <SimulatedBadge />
-      <Field label="To" placeholder="Recipient's 10-digit phone" value={phone} onChangeText={onPhoneChange} keyboardType="number-pad" maxLength={10} autoFocus />
+      <Field label="To" placeholder="Recipient's 10-digit phone" value={phone} onChangeText={onPhoneChange} keyboardType="number-pad" textContentType="telephoneNumber" autoFocus style={lookupError ? { borderColor: colors.danger } : undefined} />
+      {lookupError ? (
+        <Text style={[type.footnote, { color: colors.danger, fontWeight: '600', marginTop: -space.s, marginBottom: space.m }]} accessibilityRole="alert">
+          {lookupError} Test users: Carla 5550000003, Diego 5550000004.
+        </Text>
+      ) : null}
 
       {recipient && (
         <FadeIn>
@@ -102,6 +127,7 @@ export default function SendScreen({ navigation }) {
       <Field label="Note (optional)" placeholder="What is it for?" value={note} onChangeText={setNote} maxLength={80} autoCapitalize="sentences" />
       <ErrorText>{error}</ErrorText>
       <Button title="Review transfer" onPress={onContinue} loading={loading} disabled={!recipient || !validAmount} />
+      {missing ? <Text style={[type.footnote, { color: colors.muted, textAlign: 'center', marginTop: space.s }]}>{missing}</Text> : null}
     </Screen>
   );
 }
