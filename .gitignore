@@ -39,3 +39,10 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# SendClear: demo credentials live only in .env (never committed)
+.env
+!.env.example
+
+__pycache__/
+~$*
