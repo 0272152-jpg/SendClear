@@ -2,10 +2,12 @@ import { isValidPassword, isValidPin } from './ledger.js';
 
 // Seed script: invented test users and transfers. No real people, accounts or money.
 //
-// The two demo accounts (Ana, Beto) get their password and PIN from environment
-// variables, so credentials never live in the repository. They go in the
-// Blackboard submission instead. Carla and Diego get random secrets: they exist
-// only to receive money and to prove one user cannot see another user's data.
+// All four test accounts get the demo password and PIN from environment variables,
+// so credentials never live in the repository. They go in the Blackboard submission
+// instead. Ana and Beto are the main demo accounts; Carla and Diego can sign in too
+// (D23), and Carla -> Diego proves one user cannot see another user's data.
+// If the .env values are missing or invalid, only Carla and Diego are created, with
+// random secrets, so nobody can sign in with a guessable password.
 
 export const DEMO_USERS = [
   { name: 'Ana Demo', phone: '5550000001' },
@@ -48,15 +50,17 @@ export async function seed(ledger, creds, randomSecret) {
   const sessions = {};
   const pins = {};
 
-  if (!demoCredsProblem(creds)) {
+  const credsOk = !demoCredsProblem(creds);
+  if (credsOk) {
     for (const u of DEMO_USERS) {
       sessions[u.phone] = await ledger.signUp({ ...u, password: creds.password, pin: creds.pin });
       pins[u.phone] = creds.pin;
     }
   }
   for (const u of EXTRA_USERS) {
-    const pin = String(Math.floor(1000 + Math.random() * 9000));
-    sessions[u.phone] = await ledger.signUp({ ...u, password: randomSecret(), pin });
+    const pin = credsOk ? creds.pin : String(Math.floor(1000 + Math.random() * 9000));
+    const password = credsOk ? creds.password : randomSecret();
+    sessions[u.phone] = await ledger.signUp({ ...u, password, pin });
     pins[u.phone] = pin;
   }
 

@@ -24,6 +24,7 @@
 | 2026-11-16 | Rafael Galicia Figeroa | Published EAS Update (branch `main`, group 09087e03) from commit 6b4a379 so the QR runs the same code as local | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | The app remembers the session on the phone (D21): user id + wrong-PIN count in AsyncStorage, checked on launch; Sign out, 3 wrong PINs and Reset demo data clear it. README security section and SPEC updated. Republished to EAS | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | Demo starting balance raised to MXN 10,000 (D22); tests use the constant. A "request money" button was proposed and not built: SPEC lists it as out of scope (frozen). 13 tests pass. Republished to EAS | AI coding assistant, reviewed by me |
+| 2026-11-16 | Rafael Galicia Figeroa | Carla and Diego can sign in with the demo creds (D23); easier demo password set in `.env` only (not in the repo). New CROSS-USER check for Carla in the seed test; 13 tests pass. Republished to EAS. Phones with old data need Reset demo data | AI coding assistant, reviewed by me |
 | TODO | TODO | Optional: run interviews/pilot and replace hypotheses | |
 | TODO | TODO | Tested on a real phone with Expo Go (iPhone + Android) | |
 | TODO | TODO | Partner review and merge through a pull request | |

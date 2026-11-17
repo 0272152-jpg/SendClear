@@ -118,6 +118,12 @@ test('seed creates invented users and Ana never sees Carla -> Diego', async () =
   assert.ok(list.every((t) => t.counterpartyName !== 'Diego Prueba'));
   assert.equal(await seed(ledger, { password: PW, pin: PIN }, randomUUID), false, 'seed runs only once');
 
+  // Carla can sign in with the demo creds too, and sees only her own transfers (CROSS-USER).
+  const carla = await ledger.signIn({ phone: '5550000003', password: PW });
+  const carlaList = await ledger.listTransactions(carla);
+  assert.equal(carlaList.length, 2);
+  assert.ok(carlaList.every((t) => t.counterpartyName !== 'Beto Demo'), 'CROSS-USER: Carla never sees Beto -> Ana');
+
   // The extra .env account is added even though the store already has users, only once.
   const extra = { name: 'Extra Test', phone: '5551119999', password: PW, pin: PIN };
   assert.equal(await ensureExtraAccount(ledger, extra), true);

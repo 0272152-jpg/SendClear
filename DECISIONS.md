@@ -79,3 +79,6 @@ The presenter asked not to sign in every time the app opens. We save `{ userId, 
 
 ## D22: Demo starting balance MXN 10,000
 New accounts started with MXN 1,000.00 of simulated money, which ran out after a few demo transfers. `DEMO_STARTING_BALANCE` is now MXN 10,000.00 (same as the per-transfer limit). Demo money only: it is not an input of the financial model. Tests read the constant instead of a fixed number. Accounts created before this keep their balance until **Reset demo data**.
+
+## D23: All four test accounts can sign in; simpler demo password
+The presenter needed to show both sides of a transfer, so Carla and Diego now get the same demo password and PIN from `.env` as Ana and Beto (before: random secrets, receive-only). If `.env` is missing or invalid they still get random secrets, so no account ever has a guessable default. The demo password in `.env` was changed to an easier one (still 8+ characters, still only in `.env` and the Blackboard submission, never in the repo). The seed test now signs in as Carla and checks she cannot see Beto -> Ana (CROSS-USER). Phones that already have data keep the old accounts until **Reset demo data**.
