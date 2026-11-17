@@ -1,7 +1,7 @@
 # SPEC: SendClear
 
 ## User and problem
-Young adults in Mexico who split costs with friends (rent, food, trips) and send small amounts by bank transfer. They have to ask for the full CLABE, they don't always know the fee up front, and they get no clear proof of payment to share. *(TODO-verify: add the number of interviews and one finding with a number, as in the deck.)*
+Young adults in Mexico who split costs with friends (rent, food, trips) and send small amounts by bank transfer. They have to ask for the full CLABE, they don't always know the fee up front, and they get no clear proof of payment to share. *(No interviews yet: this is a hypothesis to validate in a 1-week campus pilot, see deck slide 2 / A4 and DECISIONS D19. TODO-verify.)*
 
 ## Core flow (must work end to end)
 

@@ -58,3 +58,15 @@ Limit, recipient and balance checks live once, in `validateTransfer` in `ledger.
 
 ## D15: Removed the Expo template's LICENSE file
 `create-expo-app` copied a LICENSE naming 650 Industries (Expo) as copyright holder. The code is ours, so we removed it. **TODO-verify:** pick our own license (or "all rights reserved") in the founders' agreement. Our dependencies (Expo, React Native, React Navigation) are MIT-licensed, which allows commercial use with attribution.
+
+## D16: EAS Update with the `sdkVersion` runtime policy
+`eas update:configure` set `runtimeVersion` to `appVersion` (1.0.0). Expo Go only loads updates whose runtime version is `exposdk:<SDK>`, so we use `{"policy": "sdkVersion"}` (→ `exposdk:58.0.0`). If we ever ship our own build instead of Expo Go, switch back to `appVersion`. The folder has no git repo yet, so EAS commands run with `EAS_NO_VCS=1`.
+
+## D17: Optional presenter account from `.env`
+The presenter wanted their own demo account. Its name, phone, password and PIN come from `EXPO_PUBLIC_EXTRA_*` in `.env` (same rule as D-demo creds: nothing in the repo). Unlike `seed()`, which runs only on an empty phone, `ensureExtraAccount` runs on every launch and skips if the phone already has an account, so the account also appears on phones that opened an older version. Password minimum stays at 8 characters.
+
+## D18: QR follows the EAS channel, not a single update
+The QR and link point to channel `main` (runtime `exposdk:58.0.0`), so each new `eas update --branch main` reaches the same QR without changing Blackboard.
+
+## D19: No interviews → hypotheses, never invented data
+We did not run user interviews, so the deck (slide 2 and appendix A4), the pitch and the Excel notes present the user side as hypotheses to validate, each with how we will test it and the number that would prove us wrong. Inventing interview counts or "X% of users said" would be fabricated evidence; a stated hypothesis with a kill threshold is honest and still shows how we would decide. Model values do not change (MXN 600 average transfer, 5 transfers per user per month): only their source now says "Hypothesis · not validated (no interviews yet) · test in pilot". The slide 2 figure (20%) is the same assumption as the "would pay to split costs" step of the market funnel (slide 4 / A3). If interviews or the pilot happen, use `entrega/ENCUESTA.md` / `entrega/INTERVIEWS.md` and replace the hypotheses with measured data.

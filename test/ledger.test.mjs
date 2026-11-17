@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash, randomUUID } from 'node:crypto';
 import { createLedger, calcFee } from '../src/core/ledger.js';
-import { demoCredsProblem, seed } from '../src/core/seed.js';
+import { demoCredsProblem, ensureExtraAccount, seed } from '../src/core/seed.js';
 
 function memoryLedger() {
   const store = new Map();
@@ -117,6 +117,14 @@ test('seed creates invented users and Ana never sees Carla -> Diego', async () =
   assert.equal(list.length, 2);
   assert.ok(list.every((t) => t.counterpartyName !== 'Diego Prueba'));
   assert.equal(await seed(ledger, { password: PW, pin: PIN }, randomUUID), false, 'seed runs only once');
+
+  // The extra .env account is added even though the store already has users, only once.
+  const extra = { name: 'Extra Test', phone: '5551119999', password: PW, pin: PIN };
+  assert.equal(await ensureExtraAccount(ledger, extra), true);
+  assert.equal(await ensureExtraAccount(ledger, extra), false, 'second run does nothing');
+  assert.equal(await ensureExtraAccount(ledger, { ...extra, phone: '5551119998', password: 'short' }), false);
+  const me = await ledger.signIn({ phone: '5551119999', password: PW });
+  assert.equal((await ledger.listTransactions(me)).length, 0, 'CROSS-USER: new account sees no one else');
 });
 
 test('two overlapping sends both debit the balance (no lost update)', async () => {

@@ -1,5 +1,7 @@
 # Entrevistas: guion y registro
 
+> **Estado:** no se hicieron entrevistas; el deck presenta la parte de usuarios como hipótesis (slide 2 y A4). Si se hacen, usar entrega/ENCUESTA.md y reemplazar las hipótesis.
+
 La rúbrica pide "a real user and interview evidence with numbers" (15 puntos). **Estos datos tienen que venir de entrevistas reales. No los inventen.**
 Con 8 a 10 entrevistas de 10 minutos alcanza. Pueden hacerlas hoy con compañeros, amigos o roommates.
 

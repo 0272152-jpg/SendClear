@@ -6,7 +6,7 @@ Las slides tienen poco texto a propósito: Rafael dice los números y la slide l
 Antes de empezar:
 - Celular con Expo Go abierto en SendClear, sesión cerrada, brillo al máximo.
 - El Excel `SendClear_Financial_Model.xlsx` abierto en la laptop.
-- El video de respaldo de la demo listo.
+- Abre la app en Expo Go una vez antes de entrar al salón, para que quede guardada en el celular aunque falle el wifi.
 
 | Tiempo | Slide | Idea en una frase |
 |---|---|---|
@@ -28,8 +28,7 @@ Antes de empezar:
 "Soy Rafael Galicia Figeroa y esto es SendClear: mandas dinero con un número de celular y ves la comisión antes de pagar."
 
 **2 · Problema** *(señala las tres tarjetas, de izquierda a derecha)*
-"Pagarle a un amigo todavía es molesto: le pides 18 dígitos de CLABE, ves la comisión hasta el final y no te queda un comprobante para compartir. Hablé con [N] personas y [X]% me dijo que [hallazgo]."
-> TODO: llenar con entrevistas reales antes de presentar (INTERVIEWS.md).
+"Pagarle a un amigo todavía es molesto: le pides 18 dígitos de CLABE, ves la comisión hasta el final y no te queda un comprobante para compartir. Todavía no lo he validado con usuarios. Mi hipótesis es que 1 de cada 5 pagaría 1% por ver la comisión antes y tener un comprobante, y lo voy a medir en un piloto de una semana en el campus."
 
 **3 · Demo en vivo** *(Rafael maneja el celular y narra; máximo 2:45)*
 1. "Entro con Ana, una cuenta de prueba."
@@ -38,7 +37,7 @@ Antes de empezar:
 4. "En Review veo el total antes de pagar. Primero pongo un PIN incorrecto: tiembla y no se mueve dinero. Ahora el correcto."
 5. "Comprobante con folio."
 6. "Y en el historial, Ana solo ve sus propias transferencias. Hay un test automático que lo prueba."
-> Si falla la conexión: "Les muestro el video", y pon el respaldo.
+> Si falla la conexión: Expo Go usa la versión que ya abriste antes. Si aun así no carga, sigue con el guion sobre las slides y ofrece la app para que el profesor la pruebe después con el QR de Blackboard.
 
 **4 · Mercado** *(recorre las barras de arriba hacia abajo y termina en la dorada)*
 "De 87 millones de adultos, 55 millones tienen cuenta, 38 millones mueven dinero desde una app, 15 millones son jóvenes, y 3 millones pagarían por dividir gastos. Hoy usan SPEI, DiMo, Mercado Pago o efectivo. El riesgo principal es DiMo: desde el 14 de diciembre será gratis en todos los bancos."
@@ -67,6 +66,9 @@ Antes de empezar:
 ---
 
 ## Preguntas probables y respuestas
+
+**"¿Hablaste con usuarios?"**
+"Todavía no. Por eso lo presento como hipótesis, con el número que me haría cambiar de plan (apéndice A4)."
 
 **"DiMo ya es gratis. ¿Por qué alguien pagaría 1%?"**
 "Es mi mayor riesgo y lo voy a validar en el piloto. Si la gente no paga por la claridad y el comprobante, cambio quién paga: transferencias gratis entre personas, y cobro a quien organiza gastos en grupo o a pequeños comercios. La app es la misma." (Eso implicaría rehacer el Excel; no lo presentes como algo ya construido.)

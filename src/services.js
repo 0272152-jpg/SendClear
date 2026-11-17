@@ -2,7 +2,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { createLedger } from './core/ledger';
-import { demoCredsProblem, seed } from './core/seed';
+import { demoCredsProblem, ensureExtraAccount, seed } from './core/seed';
 
 export const ledger = createLedger({
   storage: AsyncStorage,
@@ -19,8 +19,18 @@ const demoCreds = {
 // Shown on the sign-in screen so a bad .env is never a silent failure.
 export const demoWarning = demoCredsProblem(demoCreds);
 
-export function seedIfEmpty() {
-  return seed(ledger, demoCreds, () => Crypto.randomUUID());
+// Optional presenter account, also from .env.
+const extraAccount = {
+  name: process.env.EXPO_PUBLIC_EXTRA_NAME,
+  phone: process.env.EXPO_PUBLIC_EXTRA_PHONE,
+  password: process.env.EXPO_PUBLIC_EXTRA_PASSWORD,
+  pin: process.env.EXPO_PUBLIC_EXTRA_PIN,
+};
+
+export async function seedIfEmpty() {
+  const seeded = await seed(ledger, demoCreds, () => Crypto.randomUUID());
+  await ensureExtraAccount(ledger, extraAccount);
+  return seeded;
 }
 
 export async function resetDemoData() {

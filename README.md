@@ -44,6 +44,7 @@ On first launch, the app runs the seed script (`src/core/seed.js`) and creates i
 | Beto Demo | 5550000002 | Yes, with the password/PIN from `.env` |
 | Carla Prueba | 5550000003 | No (random secret). Receives transfers only |
 | Diego Prueba | 5550000004 | No (random secret). Receives transfers only |
+| Presenter (optional) | from `.env` (`EXPO_PUBLIC_EXTRA_*`) | Yes. Created on every launch if missing, even on phones that already have data |
 
 **The password and PIN are not in this repository.** They go in the Blackboard submission. You can also tap **Create account** to make your own test account, which starts with MXN 1,000.00 of demo money.
 

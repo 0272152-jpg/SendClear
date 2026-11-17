@@ -19,6 +19,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cb609a97-d131-4414-86b2-440e69239cce"
+      }
+    },
+    "owner": "rafagal3108",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/cb609a97-d131-4414-86b2-440e69239cce"
     }
   }
 }

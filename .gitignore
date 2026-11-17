@@ -43,6 +43,11 @@ yarn-error.*
 # SendClear: demo credentials live only in .env (never committed)
 .env
 !.env.example
+CREDENCIALES_Y_COMO_CORRER.md
 
 __pycache__/
 ~$*
+
+# Local only: submission folder (has test credentials) and invented example answers
+ENTREGA_BLACKBOARD/
+ejemplo/

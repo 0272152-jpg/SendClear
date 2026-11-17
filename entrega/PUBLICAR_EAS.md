@@ -36,6 +36,10 @@ npx eas-cli@latest init
 npx eas-cli@latest update:configure
 ```
 
+   Después revisa `app.json`: `runtimeVersion` debe decir `"policy": "sdkVersion"` (si dice `appVersion`, cámbialo; Expo Go solo abre actualizaciones con runtime `exposdk:58.0.0`).
+
+   Si la carpeta no es un repo de git, antes de los pasos 5 y 6 corre `$env:EAS_NO_VCS='1'` en PowerShell, y al paso 6 agrégale `--environment production`.
+
 6. Publica la app:
 ```bash
 npx eas-cli@latest update --branch main --message "Final project"

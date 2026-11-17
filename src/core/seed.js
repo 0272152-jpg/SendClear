@@ -25,6 +25,21 @@ export function demoCredsProblem(creds) {
   return null;
 }
 
+// Extra presenter account (name, phone, password, pin all from .env). Unlike seed(),
+// it also runs on phones that already have data, so it appears after an update.
+// Missing or invalid values, or a phone that already has an account, do nothing.
+export async function ensureExtraAccount(ledger, account) {
+  if (!account || !account.name || !account.phone) return false;
+  if (!isValidPassword(account.password) || !isValidPin(account.pin)) return false;
+  try {
+    await ledger.signUp(account);
+    return true;
+  } catch (e) {
+    if (e && e.code === 'PHONE_TAKEN') return false;
+    throw e;
+  }
+}
+
 // creds = { password, pin } for the demo accounts. Invalid or missing creds skip
 // only the demo accounts; the other invented users are still created.
 export async function seed(ledger, creds, randomSecret) {
