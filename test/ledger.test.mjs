@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash, randomUUID } from 'node:crypto';
-import { createLedger, calcFee } from '../src/core/ledger.js';
+import { createLedger, calcFee, DEMO_STARTING_BALANCE as START } from '../src/core/ledger.js';
 import { demoCredsProblem, ensureExtraAccount, seed } from '../src/core/seed.js';
 
 function memoryLedger() {
@@ -40,8 +40,8 @@ test('core flow: sign in, send with PIN, balances and receipt', async () => {
   assert.equal(tx.fee, 500); // 1% of MXN 500
   assert.match(tx.folio, /^SC-[0-9A-F]{8}$/);
 
-  assert.equal((await ledger.getMe(ana)).balance, 100000 - 50000 - 500);
-  assert.equal((await ledger.getMe(beto)).balance, 100000 + 50000);
+  assert.equal((await ledger.getMe(ana)).balance, START - 50000 - 500);
+  assert.equal((await ledger.getMe(beto)).balance, START + 50000);
 
   const betoView = await ledger.getTransaction(beto, tx.id);
   assert.equal(betoView.direction, 'received');
@@ -98,12 +98,12 @@ test('wrong PIN moves no money and locks after 3 tries', async () => {
   await assert.rejects(ledger.send(ana, { toPhone: '5551110002', amount: 100, pin: '0000' }), { code: 'BAD_PIN' });
   await assert.rejects(ledger.send(ana, { toPhone: '5551110002', amount: 100, pin: '0000' }), { code: 'PIN_LOCKED' });
   await assert.rejects(ledger.send(ana, { toPhone: '5551110002', amount: 100, pin: PIN }), { code: 'PIN_LOCKED' });
-  assert.equal((await ledger.getMe(ana)).balance, 100000);
+  assert.equal((await ledger.getMe(ana)).balance, START);
 });
 
 test('rejects overdraft, zero, self-transfer and unknown recipient', async () => {
   const { ledger, ana } = await setup();
-  await assert.rejects(ledger.send(ana, { toPhone: '5551110002', amount: 100000, pin: PIN }), { code: 'NO_FUNDS' });
+  await assert.rejects(ledger.send(ana, { toPhone: '5551110002', amount: START, pin: PIN }), { code: 'NO_FUNDS' });
   await assert.rejects(ledger.send(ana, { toPhone: '5551110002', amount: 0, pin: PIN }), { code: 'BAD_AMOUNT' });
   await assert.rejects(ledger.send(ana, { toPhone: '5551110001', amount: 100, pin: PIN }), { code: 'SELF' });
   await assert.rejects(ledger.send(ana, { toPhone: '5550000000', amount: 100, pin: PIN }), { code: 'NOT_FOUND' });
@@ -134,7 +134,7 @@ test('two overlapping sends both debit the balance (no lost update)', async () =
     ledger.send(ana, { toPhone: '5551110003', amount: 10000, pin: PIN }),
   ]);
   assert.notEqual(a.id, b.id);
-  assert.equal((await ledger.getMe(ana)).balance, 100000 - 2 * (10000 + 100));
+  assert.equal((await ledger.getMe(ana)).balance, START - 2 * (10000 + 100));
   assert.equal((await ledger.listTransactions(ana)).length, 2);
 });
 
@@ -144,9 +144,9 @@ test('quote validates like send but moves no money', async () => {
   assert.deepEqual(Object.keys(q.recipient).sort(), ['id', 'name', 'phoneMasked']);
   assert.equal(q.fee, 200);
   assert.equal(q.total, 20200);
-  await assert.rejects(ledger.quote(ana, { toPhone: '5551110002', amount: 100000 }), { code: 'NO_FUNDS' });
+  await assert.rejects(ledger.quote(ana, { toPhone: '5551110002', amount: START }), { code: 'NO_FUNDS' });
   await assert.rejects(ledger.quote(ana, { toPhone: '5551110002', amount: 1000001 }), { code: 'TOO_BIG' });
-  assert.equal((await ledger.getMe(ana)).balance, 100000);
+  assert.equal((await ledger.getMe(ana)).balance, START);
 });
 
 test('bad .env demo creds skip only the demo accounts and explain why', async () => {

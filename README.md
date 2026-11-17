@@ -46,7 +46,7 @@ On first launch, the app runs the seed script (`src/core/seed.js`) and creates i
 | Diego Prueba | 5550000004 | No (random secret). Receives transfers only |
 | Presenter (optional) | from `.env` (`EXPO_PUBLIC_EXTRA_*`) | Yes. Created on every launch if missing, even on phones that already have data |
 
-**The password and PIN are not in this repository.** They go in the Blackboard submission. You can also tap **Create account** to make your own test account, which starts with MXN 1,000.00 of demo money.
+**The password and PIN are not in this repository.** They go in the Blackboard submission. You can also tap **Create account** to make your own test account, which starts with MXN 10,000.00 of demo money.
 
 To start over, tap **Reset demo data** on the sign-in screen. If the `.env` values are missing or invalid, the sign-in screen says so, and Carla and Diego are still created.
 
@@ -64,7 +64,7 @@ Everything simulated is labelled on screen with a gold **SIMULATED** badge.
 
 | Real-world piece | In SendClear |
 |---|---|
-| Money / balances | Demo balance stored on the phone. New accounts get MXN 1,000.00 |
+| Money / balances | Demo balance stored on the phone. New accounts get MXN 10,000.00 |
 | SPEI transfer through a licensed partner | Ledger update on the phone (`src/core/ledger.js`). The receipt says "not a real SPEI payment" |
 | Identity check (KYC) | Not run. Sign-up asks for name and phone only |
 | Fee collection | Calculated and deducted from the demo balance (1%, max MXN 15) |

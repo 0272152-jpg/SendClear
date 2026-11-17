@@ -5,7 +5,7 @@ Young adults in Mexico who split costs with friends (rent, food, trips) and send
 
 ## Core flow (must work end to end)
 
-1. **Sign in** with phone (10 digits) and password, or **create an account** (name, phone, password, 4-digit PIN). New accounts get MXN 1,000.00 of simulated demo money.
+1. **Sign in** with phone (10 digits) and password, or **create an account** (name, phone, password, 4-digit PIN). New accounts get MXN 10,000.00 of simulated demo money.
 2. **Home** shows the balance, the user's SendClear number and the last 5 transfers.
 3. **Send money**: type the recipient's phone. The app shows their name and masked phone (`••• ••• 0002`). Enter the amount and an optional note. Fee and total are shown live. Tap **Review transfer**: the ledger checks limit, recipient and balance before moving on.
 4. **Review**: recipient, amount, fee (1%, max MXN 15.00) and total. Enter the 4-digit PIN and tap **Send**. A wrong PIN shakes the boxes and moves no money.

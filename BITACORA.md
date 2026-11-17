@@ -23,6 +23,7 @@
 | 2026-11-16 | Rafael Galicia Figeroa | Bug on iPhone: "Review transfer" stayed off with no visible reason. The lookup error showed under the note field, hidden by the keyboard; iOS autofill "+52 …" was cut by maxLength; a decimal comma ("150,50") was read as 15,050. Fix in SendScreen: digits-only phone (last 10 of +52), comma decimal accepted, lookup error under the To field with the test numbers, and a line under the button saying what is missing. Ledger rules unchanged; 13 tests pass. TODO-verify on iPhone | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | Published EAS Update (branch `main`, group 09087e03) from commit 6b4a379 so the QR runs the same code as local | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | The app remembers the session on the phone (D21): user id + wrong-PIN count in AsyncStorage, checked on launch; Sign out, 3 wrong PINs and Reset demo data clear it. README security section and SPEC updated. Republished to EAS | AI coding assistant, reviewed by me |
+| 2026-11-16 | Rafael Galicia Figeroa | Demo starting balance raised to MXN 10,000 (D22); tests use the constant. A "request money" button was proposed and not built: SPEC lists it as out of scope (frozen). 13 tests pass. Republished to EAS | AI coding assistant, reviewed by me |
 | TODO | TODO | Optional: run interviews/pilot and replace hypotheses | |
 | TODO | TODO | Tested on a real phone with Expo Go (iPhone + Android) | |
 | TODO | TODO | Partner review and merge through a pull request | |

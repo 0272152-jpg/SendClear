@@ -4,7 +4,7 @@
 //
 // Money is always stored in integer centavos (MXN) to avoid float rounding.
 
-export const DEMO_STARTING_BALANCE = 100000; // MXN 1,000.00 of simulated funds per new account (assumption)
+export const DEMO_STARTING_BALANCE = 1000000; // MXN 10,000.00 of simulated funds per new account (assumption)
 export const FEE_RATE = 0.01; // 1% of the amount sent (assumption, see DECISIONS.md)
 export const FEE_CAP = 1500; // fee never above MXN 15.00 (assumption)
 export const MAX_TRANSFER = 1000000; // MXN 10,000.00 per transfer (assumption)

@@ -76,3 +76,6 @@ On a recent iPhone, Home's large-title header rendered empty (our ScrollView sit
 
 ## D21: Remember the session on the phone
 The presenter asked not to sign in every time the app opens. We save `{ userId, pinAttempts }` in AsyncStorage (`sendclear.session.v1`), never the password or PIN, and on launch reopen it only if `ledger.getMe` still finds that user. **Sign out**, 3 wrong PINs and **Reset demo data** delete it. Trade-off: anyone holding an unlocked phone sees the balance and history; money still cannot move without the 4-digit PIN, and the wrong-PIN count is saved so closing the app does not reset the 3-try limit. This replaces the "session in memory only" rule in README. Reads still take the session and filter by `userId`; `ledger.js` is unchanged.
+
+## D22: Demo starting balance MXN 10,000
+New accounts started with MXN 1,000.00 of simulated money, which ran out after a few demo transfers. `DEMO_STARTING_BALANCE` is now MXN 10,000.00 (same as the per-transfer limit). Demo money only: it is not an input of the financial model. Tests read the constant instead of a fixed number. Accounts created before this keep their balance until **Reset demo data**.
