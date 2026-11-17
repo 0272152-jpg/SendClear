@@ -11,6 +11,7 @@ Todo lo que se sube a Blackboard está en esta carpeta, junto al código de la a
 | Pitch | `PITCH.md` | Guion de 7 min para un solo presentador (Rafael) + respuestas a preguntas probables |
 | Entrevistas | `INTERVIEWS.md` | Guion y tabla. **Hay que hacerlas de verdad** |
 | Regulación y legal | `REGULATORY_LEGAL.md` | Detalle con sus TODO-verify |
+| Publicar la app | `PUBLICAR_EAS.md` | Pasos para publicar con EAS desde la otra compu |
 | Credenciales de prueba | **solo en Blackboard**, nunca aquí | Los valores de su `.env` |
 
 ## Si cambian un supuesto
