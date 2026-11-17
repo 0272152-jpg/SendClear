@@ -19,6 +19,7 @@
 | 2026-11-16 | Rafael Galicia Figeroa | Repo now holds only the app and its build record: `entrega/` (deck, Excel, pitch, interviews, legal detail) removed from git and git-ignored; those files go to Blackboard | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | Clearer sign-in (landing) screen: brand row, one-line promise, the three product points (phone number, fee first, receipt) and the form in a card. Same flow and fields, no new features. Android bundle builds; 13 tests pass. TODO-verify on a real phone | AI coding assistant, reviewed by me |
 | 2026-11-16 | Rafael Galicia Figeroa | iPhone fix: the sign-in screen got the notch/home-bar space twice (SafeAreaView + ScrollView `contentInsetAdjustmentBehavior="automatic"`). Screens without a header now use `never`. TODO-verify on iPhone | AI coding assistant, reviewed by me |
+| 2026-11-16 | Rafael Galicia Figeroa | Home on iPhone: empty large-title header and clipped "Sign out" fixed (D20). Greeting inside the screen, 3-step "how it works" row, clearer empty state, "See all" always visible, Sign out at the bottom. iOS bundle builds; 13 tests pass | AI coding assistant, reviewed by me |
 | TODO | TODO | Optional: run interviews/pilot and replace hypotheses | |
 | TODO | TODO | Tested on a real phone with Expo Go (iPhone + Android) | |
 | TODO | TODO | Partner review and merge through a pull request | |

@@ -26,13 +26,8 @@ const header = {
   contentStyle: { backgroundColor: colors.bg },
 };
 
-// iOS large titles on the two "home base" screens: a big title that collapses as you scroll,
-// so it is always clear where you are. Android shows a regular title.
-const largeTitle = {
-  headerLargeTitle: true,
-  headerLargeTitleShadowVisible: false,
-  headerLargeTitleStyle: { color: colors.white, fontWeight: '800' },
-};
+// No iOS large titles: our screens wrap the ScrollView in SafeAreaView, so on recent iOS the
+// large title area rendered empty. Home shows its own big greeting inside the screen instead.
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -66,11 +61,11 @@ export default function App() {
             {session ? (
               // Signed in: these screens exist only while there is a session.
               <>
-                <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'SendClear', ...largeTitle }} />
+                <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'SendClear' }} />
                 <Stack.Screen name="Send" component={SendScreen} options={{ title: 'Send money' }} />
                 <Stack.Screen name="Confirm" component={ConfirmScreen} options={{ title: 'Review' }} />
                 <Stack.Screen name="Receipt" component={ReceiptScreen} options={{ title: 'Receipt' }} />
-                <Stack.Screen name="History" component={HistoryScreen} options={{ title: 'All transfers', ...largeTitle }} />
+                <Stack.Screen name="History" component={HistoryScreen} options={{ title: 'All transfers' }} />
               </>
             ) : (
               <>

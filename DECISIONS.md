@@ -53,7 +53,7 @@ Limit, recipient and balance checks live once, in `validateTransfer` in `ledger.
 - **PIN boxes** like the iPhone passcode screen. A wrong PIN shakes them, turns them red and fires an error haptic, all on the same frame.
 - **Haptics only on meaningful moments:** transfer sent (success), wrong PIN or failed sign-in (error). `expo-haptics` ships in Expo Go.
 - **Reduce Motion respected:** with the phone setting on, nothing scales, slides or shakes; elements only fade (`useReducedMotion` in `feedback.js`).
-- **Wayfinding:** iOS large titles on Home ("Hi, Ana") and All transfers. After sending, the stack is reset to Home → Receipt, so going back can never return to the PIN screen and re-submit.
+- **Wayfinding:** a big "Hi, Ana" greeting at the top of Home (was an iOS large title; replaced in D20). After sending, the stack is reset to Home → Receipt, so going back can never return to the PIN screen and re-submit.
 - Rejected: bouncy springs and confetti. A payment app should feel calm and certain, not playful.
 
 ## D15: Removed the Expo template's LICENSE file
@@ -70,3 +70,6 @@ The QR and link point to channel `main` (runtime `exposdk:58.0.0`), so each new 
 
 ## D19: No interviews → hypotheses, never invented data
 We did not run user interviews, so the deck (slide 2 and appendix A4), the pitch and the Excel notes present the user side as hypotheses to validate, each with how we will test it and the number that would prove us wrong. Inventing interview counts or "X% of users said" would be fabricated evidence; a stated hypothesis with a kill threshold is honest and still shows how we would decide. Model values do not change (MXN 600 average transfer, 5 transfers per user per month): only their source now says "Hypothesis · not validated (no interviews yet) · test in pilot". The slide 2 figure (20%) is the same assumption as the "would pay to split costs" step of the market funnel (slide 4 / A3). If interviews or the pilot happen, use `entrega/ENCUESTA.md` / `entrega/INTERVIEWS.md` and replace the hypotheses with measured data.
+
+## D20: No iOS large titles; Home greeting and Sign out live in the screen
+On a recent iPhone, Home's large-title header rendered empty (our ScrollView sits inside SafeAreaView, not directly under the header) and the "Sign out" header button was clipped inside the system's fixed-size button pill. We use a regular header title, show "Hi, <name>" inside the screen and moved Sign out to a button at the end of Home. The empty space on Home now explains the three steps of a transfer (same rules as `ledger.js`) and, with no transfers yet, points to the invented test user Carla Prueba. No new features: same data, same actions. TODO-verify on Android.
